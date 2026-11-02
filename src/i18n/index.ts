@@ -4,7 +4,22 @@
  * Languages are the ones the Raindrop.io app offers (raindropio/app src/assets/languages).
  */
 import type { Message, MessageKey, Messages, Msg, MsgParam } from './types';
+import de from './locales/de';
 import en from './locales/en';
+import es from './locales/es';
+import fr from './locales/fr';
+import hi from './locales/hi';
+import it from './locales/it';
+import ja from './locales/ja';
+import ko from './locales/ko';
+import nl from './locales/nl';
+import pl from './locales/pl';
+import pt from './locales/pt';
+import ru from './locales/ru';
+import sv from './locales/sv';
+import tr from './locales/tr';
+import zh from './locales/zh';
+import zhTW from './locales/zh_TW';
 
 export type { Msg, MessageKey } from './types';
 export { msg } from './types';
@@ -12,14 +27,35 @@ export { msg } from './types';
 /** Code, native name, BCP 47 tag for Intl, messages. */
 export const LANGUAGES = [
   { code: 'en', name: 'English', tag: 'en', messages: en },
+  { code: 'de', name: 'Deutsch', tag: 'de', messages: de },
+  { code: 'es', name: 'Español', tag: 'es', messages: es },
+  { code: 'fr', name: 'Français', tag: 'fr', messages: fr },
+  { code: 'hi', name: 'हिन्दी', tag: 'hi', messages: hi },
+  { code: 'it', name: 'Italiano', tag: 'it', messages: it },
+  { code: 'ja', name: '日本語', tag: 'ja', messages: ja },
+  { code: 'ko', name: '한국어', tag: 'ko', messages: ko },
+  { code: 'nl', name: 'Nederlands', tag: 'nl', messages: nl },
+  { code: 'pl', name: 'Polski', tag: 'pl', messages: pl },
+  { code: 'pt', name: 'Português (Brasil)', tag: 'pt-BR', messages: pt },
+  { code: 'ru', name: 'Русский', tag: 'ru', messages: ru },
+  { code: 'sv', name: 'Svenska', tag: 'sv', messages: sv },
+  { code: 'tr', name: 'Türkçe', tag: 'tr', messages: tr },
+  { code: 'zh', name: '中文（简体）', tag: 'zh-Hans', messages: zh },
+  // Two Chinese variants need two codes; Traditional gets the region suffix.
+  { code: 'zh_TW', name: '中文（繁體）', tag: 'zh-Hant', messages: zhTW },
 ] as const satisfies readonly { code: string; name: string; tag: string; messages: Messages }[];
 
 export type LangCode = (typeof LANGUAGES)[number]['code'];
 export type LanguageSetting = LangCode | 'auto';
 
-/** Picks the supported language closest to a browser UI language such as "en-GB". */
+/** Picks the supported language closest to a browser UI language such as "pt-PT" or "zh-TW". */
 export function matchLanguage(uiLanguage: string): LangCode {
-  const base = uiLanguage.replace('_', '-').toLowerCase().split('-')[0];
+  const tag = uiLanguage.replace('_', '-').toLowerCase();
+  if (tag.startsWith('zh')) {
+    return /^zh-(tw|hk|mo|hant)/.test(tag) ? 'zh_TW' : 'zh';
+  }
+  if (tag.startsWith('pt')) return 'pt';
+  const base = tag.split('-')[0];
   return LANGUAGES.find((l) => l.code === base)?.code ?? 'en';
 }
 
