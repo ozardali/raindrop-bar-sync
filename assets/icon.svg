@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <!-- Source for public/icon/*.png. Regenerate with `npm run icons`. -->
+  <defs>
+    <linearGradient id="drop" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#5AB0FF"/>
+      <stop offset="1" stop-color="#1E66E5"/>
+    </linearGradient>
+  </defs>
+  <path d="M64 3C64 3 14 54 14 78a50 48 0 0 0 100 0C114 54 64 3 64 3Z" fill="url(#drop)"/>
+  <path d="M45 50h38a4 4 0 0 1 4 4v54l-23-15-23 15V54a4 4 0 0 1 4-4Z" fill="#fff"/>
+</svg>
