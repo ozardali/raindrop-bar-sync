@@ -1,0 +1,31 @@
+{
+  "name": "raindrop-bar-sync",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Two-way sync between the browser's native bookmarks bar and a Raindrop.io collection",
+  "license": "MIT",
+  "author": "Goksel Ozardali",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ozardali/raindrop-bar-sync.git"
+  },
+  "scripts": {
+    "dev": "wxt",
+    "dev:firefox": "wxt -b firefox",
+    "build": "wxt build",
+    "build:firefox": "wxt build -b firefox",
+    "zip": "wxt zip",
+    "zip:firefox": "wxt zip -b firefox",
+    "compile": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "postinstall": "wxt prepare",
+    "icons": "sh scripts/icons.sh"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.0",
+    "vitest": "^3.0.0",
+    "wxt": "^0.20.0"
+  }
+}
