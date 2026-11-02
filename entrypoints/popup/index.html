@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Raindrop Bar Sync</title>
+    <style>
+      body { width: 320px; }
+      header { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px 12px; }
+      main { padding: 0 16px 16px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; }
+      .facts { display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 14px; }
+      .fact { display: flex; justify-content: space-between; gap: 12px; font-size: 13px; }
+      .fact span:first-child { color: var(--text-2); flex: none; }
+      .fact span:last-child { flex: 1; min-width: 0; text-align: right; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+      .actions { display: grid; grid-template-columns: 1fr auto; gap: 8px; }
+      #setup p { margin: 0 0 12px; }
+      [hidden] { display: none !important; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="brand">
+        <img src="/icon/48.png" alt="" />
+        <h1 data-i18n="popup.title">Bar Sync</h1>
+      </div>
+      <span id="pill" class="pill">…</span>
+    </header>
+
+    <main>
+      <section id="setup" class="card" hidden>
+        <p data-i18n="popup.setupText"></p>
+        <button id="setup-btn" class="btn primary block" data-i18n="popup.setup"></button>
+      </section>
+
+      <div id="notice" class="notice" hidden></div>
+
+      <section id="details" class="facts" hidden>
+        <div class="fact"><span data-i18n="popup.collection"></span><span><a id="collection" target="_blank" rel="noreferrer"></a></span></div>
+        <div class="fact"><span data-i18n="popup.lastSync"></span><span id="last-sync"></span></div>
+        <div class="fact"><span data-i18n="popup.items"></span><span id="items"></span></div>
+        <div class="fact"><span data-i18n="popup.device"></span><span id="device"></span></div>
+        <div class="fact" id="last-change-row" hidden><span data-i18n="popup.lastChange"></span><span id="last-change"></span></div>
+      </section>
+
+      <div id="actions" class="actions" hidden>
+        <button id="sync" class="btn primary" data-i18n="action.syncNow"></button>
+        <button id="settings" class="btn" data-i18n="action.settings"></button>
+      </div>
+    </main>
+
+    <script type="module" src="./main.ts"></script>
+  </body>
+</html>
